@@ -44,14 +44,14 @@ io.sockets.on('connection', function(socket) {
   // watch for message from client (JSON)
   socket.on('message', function(message) {
     // Join message {operation: 'join', name: clientname}
-    if (message.operation == 'join') {
-      console.log('Client: ' + message.name + " joins");
-      // Send join message to all other clients
-      socket.broadcast.emit('message', {
-        operation: 'join',
-        name: message.name
-      });
-    }
+//     if (message.operation == 'join') {
+//       console.log('Client: ' + message.name + " joins");
+//       // Send join message to all other clients
+//       socket.broadcast.emit('message', {
+//         operation: 'join',
+//         name: message.name
+//       });
+//     }
     // Message from client {operation: 'mess', name: clientname, test: message}
     if (message.operation == 'mess') {
       console.log('Message: ' + message.text);
