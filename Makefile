@@ -17,6 +17,7 @@ all: PutHTML
 PutHTML:
 	cp connectfour.html /var/www/html/class/softdev/$(USER)/WebAppProject/
 	cp webApp.js /var/www/html/class/softdev/$(USER)/WebAppProject/
+	cp Connect4.js /var/www/html/class/softdev/$(USER)/WebAppProject/
 
 
 	echo "Current contents of your HTML directory: "
