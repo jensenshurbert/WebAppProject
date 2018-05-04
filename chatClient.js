@@ -1,7 +1,7 @@
 // Jensen Shurbert, Alexander Powell, Delaney Ambrosen
 // Kenyon College
 // port (8080) must match  port of client
-var socket = io.connect('http://cslab.kenyon.edu:8080');
+var socket = io.connect('http://cslab.kenyon.edu:8888');
 // Watch for incomming messages from server (chatapp.js)
 socket.on('message', function(message) {
   // A join message: {operation: 'join', name: clientname}
@@ -19,7 +19,7 @@ socket.on('message', function(message) {
 // Action if they push the set name button
 $('.board button').click(function() {
 	var y_pos = $('.board tr').index($(this).closest('tr'));
-    var x_pos = $(this).closest('tr').find('td').index($(this).closest('td'));  
+    var x_pos = $(this).closest('tr').find('td').index($(this).closest('td'));
     //console.log(name + " joins!");
     console.log("Position: " + y_pos + x_pos);
 
