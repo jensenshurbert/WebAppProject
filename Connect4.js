@@ -40,6 +40,11 @@ function changePlayer() {
 
     // Update the UI.
     $('#player').removeClass().addClass(currentPlayer).text(config[currentPlayer + "PlayerName"]);
+    if (currentPlayer === 'red') {
+      $('#player1').removeClass().addClass(currentPlayer).text(config[currentPlayer + "PlayerName"]);
+    } else {
+      $('#player2').removeClass().addClass(currentPlayer).text(config[currentPlayer + "PlayerName"]);
+    }
 }
 
  //Drop piece to the bottom
