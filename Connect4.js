@@ -43,9 +43,9 @@ function changePlayer() {
 
     //**Testing adding to statistic boxes
     if (currentPlayer === 'red') {
-      $('#player1.score').removeClass().addClass(currentPlayer).text("You moved");
+      $('#player1.score').text("You moved");
     } else {
-      $('#player2.score').removeClass().addClass(currentPlayer).text("You moved");
+      $('#player2.score').text("You moved");
     }
 }
 

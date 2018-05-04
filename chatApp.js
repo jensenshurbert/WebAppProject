@@ -73,13 +73,13 @@ io.sockets.on('connection', function(socket) {
 
 });
 //Everyone must use own port > 8000
-server.listen(8080);
+server.listen(8888);
 
 
 //finite state machine
 //1. wait for Join
-//2. send accept and wait for join 
+//2. send accept and wait for join
 //3. send accept and ready to play to everyone
-//4. wait for a next move 
-//			register for another person trying to join, quit, etc. 
-// break code into multiple states 
+//4. wait for a next move
+//			register for another person trying to join, quit, etc.
+// break code into multiple states
