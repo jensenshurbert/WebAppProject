@@ -2,8 +2,11 @@ $(document).ready(function() {
 
     // Setup game.
     // @todo: Make name pop-ups more user-friendly. Perhaps optional?
-    config.blackPlayerName = prompt("Please enter the first player's name. This player will use black game pieces.", config.blackPlayerName) || config.blackPlayerName;
-    config.redPlayerName = prompt("Please enter the second player's name. This player will use red game pieces.", config.redPlayerName) || config.redPlayerName;
+    //config.blackPlayerName = prompt("Please enter the first player's name. This player will use black game pieces.", config.blackPlayerName) || config.blackPlayerName;
+    //config.redPlayerName = prompt("Please enter the second player's name. This player will use red game pieces.", config.redPlayerName) || config.redPlayerName;
+    config.blackPlayerName = "Player1";
+    config.redPlayerName = "Player2";
+
     $('.prefix').text(config.playerPrefix);
     $('#player').addClass(currentPlayer).text(config[currentPlayer + "PlayerName"]);
 

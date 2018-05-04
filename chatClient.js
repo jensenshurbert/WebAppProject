@@ -19,7 +19,7 @@ socket.on('message', function(message) {
 // Action if they push the set name button
 $('.board button').click(function() {
 	var y_pos = $('.board tr').index($(this).closest('tr'));
-    var x_pos = $(this).closest('tr').find('td').index($(this).closest('td'));  
+  var x_pos = $(this).closest('tr').find('td').index($(this).closest('td'));  
     //console.log(name + " joins!");
     console.log("Position: " + y_pos + x_pos);
 
