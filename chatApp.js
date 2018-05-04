@@ -40,18 +40,18 @@ var io = require('socket.io').listen(server);
 
 // When a client connects, we note it in the console
 io.sockets.on('connection', function(socket) {
-  console.log('A client is connected!');
+  console.log('A move has been made!');
   // watch for message from client (JSON)
   socket.on('message', function(message) {
-    // Join message {operation: 'join', name: clientname}
-//     if (message.operation == 'join') {
-//       console.log('Client: ' + message.name + " joins");
-//       // Send join message to all other clients
-//       socket.broadcast.emit('message', {
-//         operation: 'join',
-//         name: message.name
-//       });
-//     }
+    Join message {operation: 'join', name: clientname}
+    if (message.operation == 'join') {
+      console.log('Client: ' + message.name + " joins");
+      // Send join message to all other clients
+      socket.broadcast.emit('message', {
+        operation: 'join',
+        name: message.name
+      });
+    }
     // Message from client {operation: 'mess', name: clientname, test: message}
     if (message.operation == 'mess') {
       console.log('Message: ' + message.text);
@@ -74,3 +74,12 @@ io.sockets.on('connection', function(socket) {
 });
 //Everyone must use own port > 8000
 server.listen(8080);
+
+
+//finite state machine
+//1. wait for Join
+//2. send accept and wait for join 
+//3. send accept and ready to play to everyone
+//4. wait for a next move 
+//			register for another person trying to join, quit, etc. 
+// break code into multiple states 
