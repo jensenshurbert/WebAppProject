@@ -40,6 +40,13 @@ function changePlayer() {
 
     // Update the UI.
     $('#player').removeClass().addClass(currentPlayer).text(config[currentPlayer + "PlayerName"]);
+
+    //**Testing adding to statistic boxes
+    if (currentPlayer === 'red') {
+      $('#player1.score').removeClass().addClass(currentPlayer).text("You moved");
+    } else {
+      $('#player2.score').removeClass().addClass(currentPlayer).text("You moved");
+    }
 }
 
  //Drop piece to the bottom
