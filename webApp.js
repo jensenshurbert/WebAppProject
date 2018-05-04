@@ -20,4 +20,4 @@ var board = [[0,0,0,0,0,0,0],
              [0,0,0,0,0,0,0]];
 
 // Set the starting player.
-var currentPlayer = config.startingPlayer;
+var currentPlayer = config.startingPlayer; 
