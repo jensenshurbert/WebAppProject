@@ -3,12 +3,14 @@
 // Run: node chatApp.js
 var http = require('http');
 var fs = require('fs');
+var playerCount = 0;
+
 
 // Loading the index file . html displayed to the client
 var server = http.createServer(function(req, res) {
   var url = req.url;
   // If no path, get the index.html
-  if (url == "/") url = "/index.html";
+  if (url == "/") url = "/connectfour.html";
   // get the file extension (needed for Content-Type)
   var ext = url.split('.').pop();
   console.log(url + "  :  " + ext);
@@ -40,18 +42,55 @@ var io = require('socket.io').listen(server);
 
 // When a client connects, we note it in the console
 io.sockets.on('connection', function(socket) {
-  console.log('A move has been made!');
+  console.log('A message has been sent!');
   // watch for message from client (JSON)
   socket.on('message', function(message) {
-    Join message {operation: 'join', name: clientname}
+    //Join message {operation: 'join', name: clientname}
     if (message.operation == 'join') {
-      console.log('Client: ' + message.name + " joins");
+      console.log('Client: joins'+playerCount);
       // Send join message to all other clients
-      socket.broadcast.emit('message', {
-        operation: 'join',
-        name: message.name
-      });
+    
+    if (playerCount == 0) {
+    	playerCount+= 1;
+    	console.log("Player" + playerCount + " attempted to join");
+    	
+    	socket.emit('message', {
+        	operation: 'accept',
+        	num: "1"
+      	});
+      
+      	socket.broadcast.emit('message', {
+        	operation: 'joined',
+        	num: "1"
+      	});
+    } else if (playerCount == 1) {
+    	playerCount += 1;
+    	console.log("Player" + playerCount + " attempted to join");
+
+    	socket.emit('message', {
+        	operation: 'accept',
+        	num: "2"
+      	});
+      
+      	socket.broadcast.emit('message', {
+        	operation: 'joined',
+        	num: "2"
+      	});
+    } else if (playerCount == 2) {
+    	console.log("Additional Player Rejected");
+    	
+    	socket.emit('message', {
+        	operation: 'reject',
+      	});
+          	
     }
+    
+
+      
+
+    }
+    
+    
     // Message from client {operation: 'mess', name: clientname, test: message}
     if (message.operation == 'mess') {
       console.log('Message: ' + message.text);
@@ -76,10 +115,13 @@ io.sockets.on('connection', function(socket) {
 server.listen(8888);
 
 
-//finite state machine
-//1. wait for Join
-//2. send accept and wait for join
-//3. send accept and ready to play to everyone
-//4. wait for a next move
-//			register for another person trying to join, quit, etc.
-// break code into multiple states
+//operations : accept, reject, move, joined
+//playerCount for accept and reject
+//move needs playerCount and an x and y
+
+//write server code that sits there and waits for a message, must be an accept
+//if accept, send back a accept
+
+
+
+//counter is in the server 
