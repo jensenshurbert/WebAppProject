@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<style>
+.div1 {
+    width: 300px;
+    height: 100px;
+    border: 1px solid blue;
+}
+</style>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -81,7 +88,7 @@
     </table>
 
   </section>
-
+<div class="div1">
   <section class = "statistics">
     <table class = "stats">
       <thead>
@@ -93,6 +100,7 @@
         <td class = "player2.score"></td>
       </tr>
     </table>
+    </div>
   </section>
 
 
@@ -101,7 +109,7 @@
 <script>
 document.getElementById("name-btn").addEventListener("click", myFunction);
 function myFunction() {
-    document.getElementById('name-btn').disabled = true;  
+    document.getElementById('name-btn').disabled = true;
 }
 </script>
 <!-- Placed at the end of the document so the pages load faster -->
