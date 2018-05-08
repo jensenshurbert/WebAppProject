@@ -14,16 +14,7 @@
 
 </head>
 <body>
-  <button type = "button" id = "name-btn">JOIN</button>
-  <script type="text/javascript">
-      var button = document.getElementById('name-btn')
-      button.addEventListener('click',hideshow,false);
-
-      function hideshow() {
-          document.getElementById('hidden-div').style.display = 'block';
-          this.style.display = 'none'
-      }
-  </script>
+  <button type = "button" onclick="myFunction()" id = "name-btn">JOIN</button>
   <section class="wrapper">
     <div class="info">
       <h1 class="title">Play Connect Four!</h1>
@@ -108,7 +99,16 @@
 
 </body>
 </html>
-
+<script>
+function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
