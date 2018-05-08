@@ -11,10 +11,9 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" type="text/css" href="main.css">
 
-
 </head>
 <body>
-  <button type = "button" onclick="myFunction()" id = "name-btn">JOIN</button>
+  <button type = "button" id = "name-btn">JOIN</button>
   <section class="wrapper">
     <div class="info">
       <h1 class="title">Play Connect Four!</h1>
@@ -100,13 +99,10 @@
 </body>
 </html>
 <script>
+document.getElementById("name-btn").addEventListener("click", myFunction);
+
 function myFunction() {
-    var x = document.getElementById("myDIV");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
+    document.getElementById('name-btn').disabled = true;
 }
 </script>
 <!-- Placed at the end of the document so the pages load faster -->
