@@ -6,6 +6,7 @@ var fs = require('fs');
 var playerCount = 0;
 
 
+
 // Loading the index file . html displayed to the client
 var server = http.createServer(function(req, res) {
   var url = req.url;
@@ -49,20 +50,20 @@ io.sockets.on('connection', function(socket) {
     if (message.operation == 'join') {
       console.log('Client: joins'+playerCount);
       // Send join message to all other clients
-
+    
     if (playerCount == 0) {
     	playerCount+= 1;
     	console.log("Player" + playerCount + " attempted to join");
-
+    	
     	socket.emit('message', {
         	operation: 'accept',
         	num: "1"
-      });
-
-      socket.broadcast.emit('message', {
+      	});
+      
+      	socket.broadcast.emit('message', {
         	operation: 'joined',
         	num: "1"
-      });
+      	});
     } else if (playerCount == 1) {
     	playerCount += 1;
     	console.log("Player" + playerCount + " attempted to join");
@@ -70,57 +71,66 @@ io.sockets.on('connection', function(socket) {
     	socket.emit('message', {
         	operation: 'accept',
         	num: "2"
-      });
-
-      socket.broadcast.emit('message', {
+      	});
+      
+      	socket.broadcast.emit('message', {
         	operation: 'joined',
         	num: "2"
-      });
+      	});
     } else if (playerCount == 2) {
     	console.log("Additional Player Rejected");
-
+    	
     	socket.emit('message', {
         	operation: 'reject',
-      });
+      	});
+          	
+    }    		}
 
-    }
-  }
-
-
-    if (message.operation == 'move'){
+    
+    else if (message.operation == 'move'){
     	console.log("You made a move");
-
-    	if (playerNum == 1){
-    	   console.log("Player2 player moved here: " + x_pos + y_pos);
-    	   socket.emit('message', {
-        	 operation: 'move',
-    		   xPos: x_pos,
-			     yPos: y_pos,
-        	  num: "2"
-      	 });
-
-      	 socket.broadcast.emit('message', {
-        	 operation: 'move',
-    		   xPos: x_pos,
-			     yPos: y_pos,
-        	 num: "2"
-      	 });
-   		}
-
-    	if (playerNum == 2){
-    	console.log("Player1 player moved here: " + x_pos + y_pos);
-
-        socket.broadcast.emit('message', {
+    	
+    	playerNumber = message.num;
+    	
+    	if (playerNumber == 1){
+    	console.log("Player1 Moved");
+    	
+    	socket.emit('message', {
         	operation: 'move',
-    		  xPos: x_pos,
-			    yPos: y_pos,
+    		xPos: message.x_pos,
+			yPos: message.y_pos,        	
+        	num: "2"
+      	});
+      
+      	socket.broadcast.emit('message', {
+        	operation: 'moved',
+    		xPos: message.x_pos,
+			yPos: message.y_pos,        	
+        	num: "2"
+      	});
+   			 }
+    
+    	if (playerNumber == 2){
+    	console.log("Player2 Moved");
+
+        socket.emit('message', {
+        	operation: 'move',
+    		xPos: message.x_pos,
+			yPos: message.y_pos,        	
         	num: "1"
       	});
+      	
+      	socket.broadcast.emit('message', {
+        	operation: 'moved',
+    		xPos: message.x_pos,
+			yPos: message.y_pos,        	
+        	num: "1"
+      	});
+      
 
-
-      }
     }
-
+    }
+    
     // Message from client {operation: 'mess', name: clientname, test: message}
 //     if (message.operation == 'mess') {
 //       console.log('Message: ' + message.text);
@@ -136,7 +146,7 @@ io.sockets.on('connection', function(socket) {
 //         name: message.name,
 //         text: message.text
 //       });
-//
+// 
 //     }
   });
 
@@ -154,4 +164,4 @@ server.listen(8888);
 
 
 
-//counter is in the server
+//counter is in the server 
