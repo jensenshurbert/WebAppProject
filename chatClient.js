@@ -39,19 +39,15 @@ $('.board button').click(function() {
     var x_pos = $(this).closest('tr').find('td').index($(this).closest('td'));
 
     //console.log(name + " joins!");
-    console.log("Position: " + y_pos + x_pos);
+    console.log("Position: " + x_pos + y_pos);
 
   socket.emit('message', {
     operation: "move",
-    //name: name
-    text: message
-
+    xPos: x_pos,
+	yPos: y_pos,
+	num: playerNum
   });
 })
-
-
-
-//change operations to column#
 
 
 //operations : join, move, end
@@ -61,16 +57,3 @@ $('.board button').click(function() {
 //in client
 //when this button gets pushed, send a join and look at the message back, "you were accepted"
 
-
-
-// Action if they push the send message button
-// $('#send-btn').click(function() {
-//   var message = $('#message').val();
-//   var name = $('#yourname').val();
-//   console.log(" message:" + message);
-//   socket.emit('message', {
-//     operation: "mess",
-//     name: name,
-//     text: message
-//   });
-// })
