@@ -83,31 +83,60 @@ io.sockets.on('connection', function(socket) {
         	operation: 'reject',
       	});
           	
-    }
-    
+    }    		}
 
+    
+    if (message.operation == 'move'){
+    	console.log("You made a move");
+    	
+    	if (playerCount == 1){
+    	console.log("Other player moved here: " + x_pos + y_pos);
+    	socket.emit('message', {
+        	operation: 'move',
+    		xPos: x_pos,
+			yPos: y_pos,        	
+        	num: "2"
+      	});
+      
+      	socket.broadcast.emit('message', {
+        	operation: 'move',
+    		xPos: x_pos,
+			yPos: y_pos,        	
+        	num: "2"
+      	});
+   			 }
+    
+    	if (playerCount == 2){
+    	console.log("Other player moved here: " + x_pos + y_pos);
+
+        socket.broadcast.emit('message', {
+        	operation: 'move',
+    		xPos: x_pos,
+			yPos: y_pos,        	
+        	num: "1"
+      	});
       
 
     }
-    
+    }
     
     // Message from client {operation: 'mess', name: clientname, test: message}
-    if (message.operation == 'mess') {
-      console.log('Message: ' + message.text);
-      // sent back out to everyone
-      socket.broadcast.emit('message', {
-        operation: 'mess',
-        name: message.name,
-        text: message.text
-      });
-      // send back to sender
-      socket.emit('message', {
-        operation: 'mess',
-        name: message.name,
-        text: message.text
-      });
-
-    }
+//     if (message.operation == 'mess') {
+//       console.log('Message: ' + message.text);
+//       // sent back out to everyone
+//       socket.broadcast.emit('message', {
+//         operation: 'mess',
+//         name: message.name,
+//         text: message.text
+//       });
+//       // send back to sender
+//       socket.emit('message', {
+//         operation: 'mess',
+//         name: message.name,
+//         text: message.text
+//       });
+// 
+//     }
   });
 
 });
