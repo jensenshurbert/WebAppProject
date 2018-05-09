@@ -108,6 +108,24 @@ $('.board button').click(function() {
 
         if(playerTurn= true){
         addDiscToBoard(currentPlayer, x_pos, y_pos);
+
+        if (verticalWin() || horizontalWin() || diagonalWin()) {
+            // Destroy our click listener to prevent further play.
+            //$('.board button').unbind('click');
+            playerTurn = false;
+            $('.prefix').text(config.winPrefix);
+            $('.play-again').show("slow");
+            return;
+
+        } else if (gameIsDraw()) {
+            // Destroy our click listener to prevent further play.
+            //$('.board button').unbind('click');
+            playerTurn = false;
+            $('.message').text(config.drawMsg);
+            $('.play-again').show("slow");
+            return;
+        }
+        
         changePlayer();
         console.log("change player");
         printBoard();}
