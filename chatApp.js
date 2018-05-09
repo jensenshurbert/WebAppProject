@@ -55,16 +55,16 @@ io.sockets.on('connection', function(socket) {
     if (message.operation == 'join') {
       console.log('Client: joins'+playerCount);
       // Send join message to all other clients
-    
+
     if (playerCount == 0) {
     	playerCount+= 1;
     	console.log("Player" + playerCount + " attempted to join");
-    	
+
     	socket.emit('message', {
         	operation: 'accept',
         	num: "1"
       	});
-      
+
       	socket.broadcast.emit('message', {
         	operation: 'joined',
         	num: "1"
@@ -77,73 +77,71 @@ io.sockets.on('connection', function(socket) {
         	operation: 'accept',
         	num: "2"
       	});
-      
+
       	socket.broadcast.emit('message', {
         	operation: 'joined',
         	num: "2"
       	});
     } else if (playerCount == 2) {
     	console.log("Additional Player Rejected");
-    	
+
     	socket.emit('message', {
         	operation: 'reject',
       	});
-          	
+
     }    		}
 
-    
+
     else if (message.operation == 'move'){
     	console.log("You made a move");
-    	
+
     	playerNumber = message.num;
     	var x_pos=message.xPos;
     	var y_pos=message.yPos;
-    	
+
     	if (playerNumber == 1){
     	console.log("Player1 Moved");
-    	
+
     	socket.emit('message', {
         	operation: 'move',
     		xPos: x_pos,
-			yPos: y_pos,        	
+			yPos: y_pos,
         	num: "2"
       	});
-      
+
       	socket.broadcast.emit('message', {
         	operation: 'moved',
     		xPos: x_pos,
-			yPos: y_pos,        	
+			yPos: y_pos,
         	num: "2"
       	});
       	console.log(x_pos + " : " + y_pos);
-      	
+
    			 }
-    
+
     	if (playerNumber == 2){
     	console.log("Player2 Moved");
 
         socket.emit('message', {
         	operation: 'move',
     		xPos: x_pos,
-<<<<<<< HEAD
+
 			yPos: y_pos,
-=======
-			yPos: y_pos,        	
->>>>>>> 7b8ee4361f11b886fc97ab1c5853762dc6f34021
+
         	num: "1"
       	});
-      	
+
       	socket.broadcast.emit('message', {
         	operation: 'moved',
     		xPos: x_pos,
-			yPos: y_pos,        	
+			yPos: y_pos,
         	num: "1"
       	});
       console.log(x_pos + " : " + y_pos);
 
     }
     }
-    
+
 
   });
 
@@ -151,37 +149,6 @@ io.sockets.on('connection', function(socket) {
 //Everyone must use own port > 8000
 server.listen(8888);
 
-(function (logger) {
-    console.old = console.log;
-    console.log = function () {
-        var output = "", arg, i;
-
-        for (i = 0; i < arguments.length; i++) {
-            arg = arguments[i];
-            output += "<span class=\"log-" + (typeof arg) + "\">";
-
-            if (
-                typeof arg === "object" &&
-                typeof JSON === "object" &&
-                typeof JSON.stringify === "function"
-            ) {
-                output += JSON.stringify(arg);
-            } else {
-                output += arg;
-            }
-
-            output += "</span>&nbsp;";
-        }
-
-        logger.innerHTML += output + "<br>";
-        console.old.apply(undefined, arguments);
-    };
-})(document.getElementById("logger"));
-
-console.log("Hi!", {a:3, b:6}, 42, true);
-console.log("Multiple", "arguments", "here");
-console.log(null, undefined);
-console.old("Eyy, that's the old and boring one.");
 
 //operations : accept, reject, move, joined
 //playerCount for accept and reject
@@ -192,4 +159,4 @@ console.old("Eyy, that's the old and boring one.");
 
 
 
-//counter is in the server 
+//counter is in the server
