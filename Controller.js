@@ -7,8 +7,10 @@ $(document).ready(function() {
     config.blackPlayerName = "Player1";
     config.redPlayerName = "Player2";
 
-    $('.prefix').text(config.playerPrefix);
-    $('#player').addClass(currentPlayer).text(config[currentPlayer + "PlayerName"]);
+  //  $('.prefix').text(config.playerPrefix);
+  //  $('#player').addClass(currentPlayer).text(config[currentPlayer + "PlayerName"]);
+
+
 
     // Trigger the game sequence by clicking on a position button on the board.
     $('.board button').click(function(e) {

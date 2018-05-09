@@ -10,16 +10,28 @@ socket.on('message', function(message) {
   //A join message: {operation: 'join', name: clientname}
   if (message.operation == 'accept') {
   console.log(JSON.stringify(message));
-	playerNum = message.num;
-	console.log("joined as " + playerNum);
+	playerNumOpp = message.num;
+	console.log("joined as " + playerNumOpp);
   }
   if (message.operation == 'reject') {
 	console.log("rejected");
   }
     if (message.operation == 'joined') {
-  console.log(JSON.stringify(message));
+  	console.log(JSON.stringify(message));
 	playerNum = message.num;
 	console.log("Opponent joined as " + playerNum);
+  }
+  if(message.operation == 'moved'){
+  	console.log("This should only work if other player moved");
+  	oppX = message.xPos;
+  	oppY = message.yPos;
+  	playerNum = message.num;
+
+	console.log("XPOS: " + oppX);
+	console.log("PLAYER:"+playerNum+" Positions: " + oppX + oppY);
+  }
+  if(message.operation == 'move') {
+  	console.log("This should work if YOU move");
   }
 
 })
