@@ -32,6 +32,7 @@ socket.on('message', function(message) {
 
     addDiscToBoard(currentPlayer, oppX, oppY2);
     printBoard();
+    changePlayer();
 
 	console.log("XPOS: " + oppX);
 	console.log("PLAYER:"+playerNum+" Positions: " + oppX + oppY);
