@@ -94,8 +94,8 @@ io.sockets.on('connection', function(socket) {
     	   console.log("Player2 player moved here: " + x_pos + y_pos);
     	   socket.emit('message', {
         	 operation: 'move',
-    		   xPos: x_pos,
-			     yPos: y_pos,
+    		   xPos: message.x_pos,
+			     yPos: message.y_pos,
         	  num: "2"
       	 });
 
@@ -109,11 +109,16 @@ io.sockets.on('connection', function(socket) {
 
     	if (playerNum == 2){
     	console.log("Player1 player moved here: " + x_pos + y_pos);
-
+        socket.emit('message', {
+          operation: 'move',
+          xPos: message.x_pos,
+          yPos: message.y_pos,
+          num: "1"
+        });
         socket.broadcast.emit('message', {
         	operation: 'move',
-    		  xPos: x_pos,
-			    yPos: y_pos,
+    		  xPos: message.x_pos,
+			    yPos: message.y_pos,
         	num: "1"
       	});
 
