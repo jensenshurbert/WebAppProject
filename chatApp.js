@@ -118,45 +118,11 @@ io.sockets.on('connection', function(socket) {
     	if (playerNumber == 2){
     	console.log("Player2 Moved");
 
-    	if (playerNum == 1){
-    	   console.log("Player2 player moved here: " + x_pos + y_pos);
-    	   socket.emit('message', {
-        	 operation: 'move',
-    		   xPos: message.x_pos,
-			     yPos: message.y_pos,
-        	  num: "2"
-      	 });
-
-      	 socket.broadcast.emit('message', {
-        	 operation: 'move',
-    		   xPos: x_pos,
-			     yPos: y_pos,
-        	 num: "2"
-      	 });
-   		}
-
-    	if (playerNum == 2){
-    	console.log("Player1 player moved here: " + x_pos + y_pos);
         socket.emit('message', {
-          operation: 'move',
-          xPos: message.x_pos,
-          yPos: message.y_pos,
-          num: "1"
-        });
-        socket.broadcast.emit('message', {
         	operation: 'move',
-<<<<<<< HEAD
     		xPos: x_pos,
 			yPos: y_pos,
         	num: "1"
-=======
-    		  xPos: message.x_pos,
-			    yPos: message.y_pos,
-
-    		  xPos: x_pos,
-			    yPos: y_pos,
-          num: "1"
->>>>>>> 01d54b68472e84607abade2f1519b339adf2044a
       	});
 
       	socket.broadcast.emit('message', {
@@ -177,19 +143,37 @@ io.sockets.on('connection', function(socket) {
 //Everyone must use own port > 8000
 server.listen(8888);
 
-(function () {
-    var old = console.log;
-    var logger = document.getElementById('log');
+(function (logger) {
+    console.old = console.log;
     console.log = function () {
-      for (var i = 0; i < arguments.length; i++) {
-        if (typeof arguments[i] == 'object') {
-            logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(arguments[i], undefined, 2) : arguments[i]) + '<br />';
-        } else {
-            logger.innerHTML += arguments[i] + '<br />';
+        var output = "", arg, i;
+
+        for (i = 0; i < arguments.length; i++) {
+            arg = arguments[i];
+            output += "<span class=\"log-" + (typeof arg) + "\">";
+
+            if (
+                typeof arg === "object" &&
+                typeof JSON === "object" &&
+                typeof JSON.stringify === "function"
+            ) {
+                output += JSON.stringify(arg);
+            } else {
+                output += arg;
+            }
+
+            output += "</span>&nbsp;";
         }
-      }
-    }
-})();
+
+        logger.innerHTML += output + "<br>";
+        console.old.apply(undefined, arguments);
+    };
+})(document.getElementById("logger"));
+
+console.log("Hi!", {a:3, b:6}, 42, true);
+console.log("Multiple", "arguments", "here");
+console.log(null, undefined);
+console.old("Eyy, that's the old and boring one.");
 
 //operations : accept, reject, move, joined
 //playerCount for accept and reject
