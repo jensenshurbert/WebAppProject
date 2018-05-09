@@ -7,10 +7,6 @@ var playerCount = 0;
 
 
 
-
-
-
-
 // Loading the index file . html displayed to the client
 var server = http.createServer(function(req, res) {
   var url = req.url;
@@ -122,19 +118,45 @@ io.sockets.on('connection', function(socket) {
     	if (playerNumber == 2){
     	console.log("Player2 Moved");
 
+    	if (playerNum == 1){
+    	   console.log("Player2 player moved here: " + x_pos + y_pos);
+    	   socket.emit('message', {
+        	 operation: 'move',
+    		   xPos: message.x_pos,
+			     yPos: message.y_pos,
+        	  num: "2"
+      	 });
+
+      	 socket.broadcast.emit('message', {
+        	 operation: 'move',
+    		   xPos: x_pos,
+			     yPos: y_pos,
+        	 num: "2"
+      	 });
+   		}
+
+    	if (playerNum == 2){
+    	console.log("Player1 player moved here: " + x_pos + y_pos);
         socket.emit('message', {
+          operation: 'move',
+          xPos: message.x_pos,
+          yPos: message.y_pos,
+          num: "1"
+        });
+        socket.broadcast.emit('message', {
         	operation: 'move',
-    		xPos: x_pos,
+    		  xPos: message.x_pos,
+			    yPos: message.y_pos,
 
-			yPos: y_pos,
-
-        	num: "1"
+    		  xPos: x_pos,
+			    yPos: y_pos,
+          num: "1"
       	});
 
       	socket.broadcast.emit('message', {
         	operation: 'moved',
-    		xPos: x_pos,
-			yPos: y_pos,
+    		  xPos: x_pos,
+			    yPos: y_pos,
         	num: "1"
       	});
       console.log(x_pos + " : " + y_pos);
