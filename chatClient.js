@@ -28,9 +28,9 @@ socket.on('message', function(message) {
   	oppX = message.xPos;
   	oppY = message.yPos;
   	playerNum = message.num;
-    oppY = dropToBottom(oppX, oppY);
+    oppY2 = dropToBottom(oppX, oppY);
 
-    addDiscToBoard(currentPlayer, oppX, oppY);
+    addDiscToBoard(currentPlayer, oppX, oppY2);
     printBoard();
 
 	console.log("XPOS: " + oppX);
