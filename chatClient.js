@@ -33,13 +33,14 @@ socket.on('message', function(message) {
     addDiscToBoard(currentPlayer, oppX, oppY2);
     printBoard();
     changePlayer();
+    $('.board button').bind('click');
 
 	console.log("XPOS: " + oppX);
 	console.log("PLAYER:"+playerNum+" Positions: " + oppX + oppY);
   }
   if(message.operation == 'move') {
   	console.log("This should work if YOU move");
-
+  $('.board button').unbind('click');
 
   }
 
