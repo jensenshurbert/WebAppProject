@@ -142,6 +142,11 @@ io.sockets.on('connection', function(socket) {
     }
     }
 
+    if (message.operation == 'end') {
+      // Send join message to all other clients
+      playerCount = 0;
+        		}
+
   });
   });
 

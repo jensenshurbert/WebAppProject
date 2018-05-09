@@ -143,8 +143,16 @@ $('.board button').click(function() {
 $('.play-again').click(function(e) {
     board = new_board;
     printBoard();
+
+    socket.emit('message', {
+      operation: "end",
+
+    });
+
+
     if (playerNum==1){
     playerTurn = true;
     console.log("new game");
+
     }
 });
