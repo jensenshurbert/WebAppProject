@@ -28,14 +28,18 @@ socket.on('message', function(message) {
   	oppX = message.xPos;
   	oppY = message.yPos;
   	playerNum = message.num;
+    oppY = dropToBottom(oppX, oppY);
+
+    addDiscToBoard(currentPlayer, oppX, oppY);
+    printBoard();
 
 	console.log("XPOS: " + oppX);
 	console.log("PLAYER:"+playerNum+" Positions: " + oppX + oppY);
   }
   if(message.operation == 'move') {
   	console.log("This should work if YOU move");
-  	
-  	
+
+
   }
 
 })
@@ -69,7 +73,7 @@ $('.board button').click(function() {
 
 
 //operations : join, move, end
-//playerCount for end and move 
+//playerCount for end and move
 //move also needs an x and y
 
 //in client
