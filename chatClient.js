@@ -146,7 +146,7 @@ $('.play-again').click(function(e) {
     board = new_board;
     printBoard();
 });
-
+ 
 //operations : join, move, end
 //playerCount for end and move
 //move also needs an x and y
