@@ -75,8 +75,6 @@ function gameIsDraw() {
             }
         }
     }
-
-    // No locations were empty. Return true to indicate that the game is a draw.
     return true;
 }
 

@@ -123,7 +123,6 @@ $('.board button').click(function() {
             playerTurn = false;
             $('.prefix').text(config.winPrefix);
             $('.play-again').show("slow");
-            console.log("")
             return;
 
         } else if (gameIsDraw()) {
@@ -146,7 +145,8 @@ $('.play-again').click(function(e) {
     printBoard();
     if (playerNum==1){
     playerTurn = true;
-  }
+    console.log("new game");
+    }
 });
 
 //operations : join, move, end
