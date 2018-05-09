@@ -109,6 +109,8 @@ $('.board button').click(function() {
         if(playerTurn= true){
         addDiscToBoard(currentPlayer, x_pos, y_pos);
 
+        printBoard();
+
         if (verticalWin() || horizontalWin() || diagonalWin()) {
             // Destroy our click listener to prevent further play.
             //$('.board button').unbind('click');
@@ -125,7 +127,7 @@ $('.board button').click(function() {
             $('.play-again').show("slow");
             return;
         }
-        
+
         changePlayer();
         console.log("change player");
         printBoard();}
