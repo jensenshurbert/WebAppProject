@@ -1,12 +1,13 @@
 // Jensen Shurbert, Alexander Powell, Delaney Ambrosen
 // Kenyon College
 // Run: node chatApp.js
-
-
-
 var http = require('http');
 var fs = require('fs');
 var playerCount = 0;
+
+
+
+
 
 
 
@@ -121,45 +122,19 @@ io.sockets.on('connection', function(socket) {
     	if (playerNumber == 2){
     	console.log("Player2 Moved");
 
-    	if (playerNum == 1){
-    	   console.log("Player2 player moved here: " + x_pos + y_pos);
-    	   socket.emit('message', {
-        	 operation: 'move',
-    		   xPos: message.x_pos,
-			     yPos: message.y_pos,
-        	  num: "2"
-      	 });
-
-      	 socket.broadcast.emit('message', {
-        	 operation: 'move',
-    		   xPos: x_pos,
-			     yPos: y_pos,
-        	 num: "2"
-      	 });
-   		}
-
-    	if (playerNum == 2){
-    	console.log("Player1 player moved here: " + x_pos + y_pos);
         socket.emit('message', {
-          operation: 'move',
-          xPos: message.x_pos,
-          yPos: message.y_pos,
-          num: "1"
-        });
-        socket.broadcast.emit('message', {
         	operation: 'move',
-    		  xPos: message.x_pos,
-			    yPos: message.y_pos,
+    		xPos: x_pos,
 
-    		  xPos: x_pos,
-			    yPos: y_pos,
-          num: "1"
+			yPos: y_pos,
+
+        	num: "1"
       	});
 
       	socket.broadcast.emit('message', {
         	operation: 'moved',
-    		  xPos: x_pos,
-			    yPos: y_pos,
+    		xPos: x_pos,
+			yPos: y_pos,
         	num: "1"
       	});
       console.log(x_pos + " : " + y_pos);
@@ -167,9 +142,8 @@ io.sockets.on('connection', function(socket) {
     }
     }
 
-
+  };
   });
-
 
 });
 //Everyone must use own port > 8000
