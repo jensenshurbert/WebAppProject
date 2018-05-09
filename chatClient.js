@@ -140,6 +140,10 @@ $('.board button').click(function() {
   });
 })
 
+$('.play-again').click(function(e) {
+    board = new_board;
+    printBoard();
+});
 
 //operations : join, move, end
 //playerCount for end and move

@@ -7,7 +7,7 @@ $(document).ready(function() {
     config.blackPlayerName = "Player1";
     config.redPlayerName = "Player2";
 
-   $('.prefix').text(config.playerPrefix);
+  $('.prefix').text(config.playerPrefix);
   $('#player').addClass(currentPlayer).text(config[currentPlayer + "PlayerName"]);
 
 

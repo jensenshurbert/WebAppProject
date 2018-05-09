@@ -19,5 +19,7 @@ var board = [[0,0,0,0,0,0,0],
              [0,0,0,0,0,0,0],
              [0,0,0,0,0,0,0]];
 
+var new_board = board;
+
 // Set the starting player.
 var currentPlayer = config.startingPlayer;
