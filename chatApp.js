@@ -1,6 +1,9 @@
 // Jensen Shurbert, Alexander Powell, Delaney Ambrosen
 // Kenyon College
 // Run: node chatApp.js
+
+
+
 var http = require('http');
 var fs = require('fs');
 var playerCount = 0;
