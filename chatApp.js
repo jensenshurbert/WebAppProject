@@ -168,7 +168,7 @@ io.sockets.on('connection', function(socket) {
     }
 
 
-  });
+  };
 
 });
 //Everyone must use own port > 8000
