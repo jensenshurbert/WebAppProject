@@ -1,6 +1,6 @@
 // Jensen Shurbert, Alexander Powell, Delaney Ambrosen
 // Kenyon College
-// port (8080) must match  port of client
+// port (8888) must match  port of client
 var socket = io.connect('http://cslab.kenyon.edu:8888');
 // Watch for incomming messages from server (chatapp.js)
 var playerNum = "";
@@ -46,7 +46,7 @@ socket.on('message', function(message) {
         playerTurn = false;
         $('.prefix').text(config.winPrefix);
         $('.play-again').show("slow");
-        console.log(Player  " + playerNum" Wins)
+        console.log(Player  " + playerNum" Wins);
         return;
 
     } else if (gameIsDraw()) {
