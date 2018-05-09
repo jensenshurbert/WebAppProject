@@ -45,9 +45,8 @@ button{
   <section class="wrapper">
     <div class="info">
       <h1 class="title">Play Connect Four!</h1>
-<!-- 
-  <h2 class="message"><span class="prefix"></span><span id="player" class="player">&nbsp;</span></h2>
- -->
+      <h2 class="message"><span class="prefix"></span><span id="player" class="player">playerNum</span></h2>
+
       <a href="#" class="play-again" style="display: none;">Play Again</a>
     </div>
 
@@ -116,15 +115,15 @@ button{
   <div class="div1">
     <table>
       <tr>
-        <th>Winner</th>
+        <th>Player</th>
         <th>Score</th>
         <th>Turn</th>
       </tr>
       <tr>
-
-        <td></td>
-        <td><span id="yourScore"></span><span id="oppScore"></span></td>
-        <td><span class="prefix"></span><span id="player" class="player">&nbsp;</span></td>
+        <td><class="message"><span class="prefix"></span><span id="player" class="player">&nbsp;</span>></td>
+        <td><h2 class="message"><span class="PlayerNumbernow"></span><span id="currentP" class="currentP">&nbsp;</span></td>
+        <td>GAME SCORE</td>
+        <td>WHOSE TURN</td>
       </tr>
     </table>
   </div>
