@@ -51,16 +51,16 @@ io.sockets.on('connection', function(socket) {
     if (message.operation == 'join') {
       console.log('Client: joins'+playerCount);
       // Send join message to all other clients
-    
+
     if (playerCount == 0) {
     	playerCount+= 1;
     	console.log("Player" + playerCount + " attempted to join");
-    	
+
     	socket.emit('message', {
         	operation: 'accept',
         	num: "1"
       	});
-      
+
       	socket.broadcast.emit('message', {
         	operation: 'joined',
         	num: "1"
@@ -73,52 +73,51 @@ io.sockets.on('connection', function(socket) {
         	operation: 'accept',
         	num: "2"
       	});
-      
+
       	socket.broadcast.emit('message', {
         	operation: 'joined',
         	num: "2"
       	});
     } else if (playerCount == 2) {
     	console.log("Additional Player Rejected");
-    	
+
     	socket.emit('message', {
         	operation: 'reject',
       	});
-          	
+
     }    		}
 
-    
+
     else if (message.operation == 'move'){
     	console.log("You made a move");
-    	
+
     	playerNumber = message.num;
     	var x_pos=message.xPos;
     	var y_pos=message.yPos;
-    	
+
     	if (playerNumber == 1){
     	console.log("Player1 Moved");
-    	
+
     	socket.emit('message', {
         	operation: 'move',
     		xPos: x_pos,
-			yPos: y_pos,        	
+			yPos: y_pos,
         	num: "2"
       	});
-      
+
       	socket.broadcast.emit('message', {
         	operation: 'moved',
     		xPos: x_pos,
-			yPos: y_pos,        	
+			yPos: y_pos,
         	num: "2"
       	});
       	console.log(x_pos + " : " + y_pos);
-      	
+
    			 }
-    
+
     	if (playerNumber == 2){
     	console.log("Player2 Moved");
 
-<<<<<<< HEAD
     	if (playerNum == 1){
     	   console.log("Player2 player moved here: " + x_pos + y_pos);
     	   socket.emit('message', {
@@ -148,31 +147,23 @@ io.sockets.on('connection', function(socket) {
         	operation: 'move',
     		  xPos: message.x_pos,
 			    yPos: message.y_pos,
-=======
-        socket.emit('message', {
-        	operation: 'move',
-<<<<<<< HEAD
-    		xPos: message.x_pos,
-			yPos: message.y_pos,        	
->>>>>>> da8e4713d3fd0c76fe97f91560df35ebbbd53cac
-=======
-    		xPos: x_pos,
-			yPos: y_pos,        	
->>>>>>> 592a4ac8a07595057dd91d1c69e0806649e3e3c5
-        	num: "1"
+
+    		  xPos: x_pos,
+			    yPos: y_pos,
+          num: "1"
       	});
-      	
+
       	socket.broadcast.emit('message', {
         	operation: 'moved',
     		xPos: x_pos,
-			yPos: y_pos,        	
+			yPos: y_pos,
         	num: "1"
       	});
       console.log(x_pos + " : " + y_pos);
 
     }
     }
-    
+
 
   });
 
@@ -190,4 +181,4 @@ server.listen(8888);
 
 
 
-//counter is in the server 
+//counter is in the server
