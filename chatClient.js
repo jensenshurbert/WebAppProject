@@ -55,7 +55,7 @@ socket.on('message', function(message) {
         $('.play-again').show("slow");
         return;
     }
-
+    printBoard();
     changePlayer();
     console.log("change player");
     //$('.board button').bind('click');
@@ -93,7 +93,7 @@ $('.board button').click(function() {
 	var y_pos=0;
 	var x_pos=0;
 	y_pos = $('.board tr').index($(this).closest('tr'));
-    x_pos = $(this).closest('tr').find('td').index($(this).closest('td'));
+  x_pos = $(this).closest('tr').find('td').index($(this).closest('td'));
 	console.log("type:"+typeof y_pos);
     //console.log(name + " joins!");
     console.log("Position: " + x_pos + y_pos);
@@ -108,7 +108,6 @@ $('.board button').click(function() {
 
         if(playerTurn= true){
         addDiscToBoard(currentPlayer, x_pos, y_pos);
-
         printBoard();
 
         if (verticalWin() || horizontalWin() || diagonalWin()) {
@@ -127,6 +126,7 @@ $('.board button').click(function() {
             $('.play-again').show("slow");
             return;
         }
+
 
         changePlayer();
         console.log("change player");
