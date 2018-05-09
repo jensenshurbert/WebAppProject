@@ -46,6 +46,7 @@ io.sockets.on('connection', function(socket) {
   console.log('A message has been sent!');
   // watch for message from client (JSON)
   socket.on('message', function(message) {
+  	console.log(JSON.stringify(message));
     //Join message {operation: 'join', name: clientname}
     if (message.operation == 'join') {
       console.log('Client: joins'+playerCount);
@@ -91,23 +92,27 @@ io.sockets.on('connection', function(socket) {
     	console.log("You made a move");
     	
     	playerNumber = message.num;
+    	var x_pos=message.xPos;
+    	var y_pos=message.yPos;
     	
     	if (playerNumber == 1){
     	console.log("Player1 Moved");
     	
     	socket.emit('message', {
         	operation: 'move',
-    		xPos: message.x_pos,
-			yPos: message.y_pos,        	
+    		xPos: x_pos,
+			yPos: y_pos,        	
         	num: "2"
       	});
       
       	socket.broadcast.emit('message', {
         	operation: 'moved',
-    		xPos: message.x_pos,
-			yPos: message.y_pos,        	
+    		xPos: x_pos,
+			yPos: y_pos,        	
         	num: "2"
       	});
+      	console.log(x_pos + " : " + y_pos);
+      	
    			 }
     
     	if (playerNumber == 2){
@@ -115,39 +120,23 @@ io.sockets.on('connection', function(socket) {
 
         socket.emit('message', {
         	operation: 'move',
-    		xPos: message.x_pos,
-			yPos: message.y_pos,        	
+    		xPos: x_pos,
+			yPos: y_pos,        	
         	num: "1"
       	});
       	
       	socket.broadcast.emit('message', {
         	operation: 'moved',
-    		xPos: message.x_pos,
-			yPos: message.y_pos,        	
+    		xPos: x_pos,
+			yPos: y_pos,        	
         	num: "1"
       	});
-      
+      console.log(x_pos + " : " + y_pos);
 
     }
     }
     
-    // Message from client {operation: 'mess', name: clientname, test: message}
-//     if (message.operation == 'mess') {
-//       console.log('Message: ' + message.text);
-//       // sent back out to everyone
-//       socket.broadcast.emit('message', {
-//         operation: 'mess',
-//         name: message.name,
-//         text: message.text
-//       });
-//       // send back to sender
-//       socket.emit('message', {
-//         operation: 'mess',
-//         name: message.name,
-//         text: message.text
-//       });
-// 
-//     }
+
   });
 
 });

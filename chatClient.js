@@ -4,6 +4,8 @@
 var socket = io.connect('http://cslab.kenyon.edu:8888');
 // Watch for incomming messages from server (chatapp.js)
 var playerNum = "";
+var playerTurn = false;
+
 
 
 socket.on('message', function(message) {
@@ -32,6 +34,8 @@ socket.on('message', function(message) {
   }
   if(message.operation == 'move') {
   	console.log("This should work if YOU move");
+  	
+  	
   }
 
 })
@@ -47,9 +51,11 @@ $('#name-btn').click(function() {
 
 // Action if they push the set name button
 $('.board button').click(function() {
-	var y_pos = $('.board tr').index($(this).closest('tr'));
-    var x_pos = $(this).closest('tr').find('td').index($(this).closest('td'));
-
+	var y_pos=0;
+	var x_pos=0;
+	y_pos = $('.board tr').index($(this).closest('tr'));
+    x_pos = $(this).closest('tr').find('td').index($(this).closest('td'));
+	console.log("type:"+typeof y_pos);
     //console.log(name + " joins!");
     console.log("Position: " + x_pos + y_pos);
 
@@ -69,3 +75,5 @@ $('.board button').click(function() {
 //in client
 //when this button gets pushed, send a join and look at the message back, "you were accepted"
 
+//both start as not being able to move, if you get a message saying player2 joined, then its player 1's turn so set = true
+//then at that point, any time you do a move, you set it to false, any time the other side moves, set it to true
