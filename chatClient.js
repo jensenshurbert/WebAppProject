@@ -15,11 +15,11 @@ socket.on('message', function(message) {
 	playerNumOpp = message.num;
 	console.log("joined as " + playerNumOpp);
   }
-  
+
   if (message.operation == 'reject') {
 	console.log("rejected");
   }
-  
+
     if (message.operation == 'joined') {
   	console.log(JSON.stringify(message));
 	playerNum = message.num;
@@ -28,7 +28,7 @@ socket.on('message', function(message) {
 		playerTurn = true;
 	}
   }
-  
+
   if(message.operation == 'moved'){
   	console.log("This should only work if other player moved");
   	oppX = message.xPos;
@@ -57,21 +57,22 @@ socket.on('message', function(message) {
     }
 
     changePlayer();
+    console.log("change player");
     //$('.board button').bind('click');
     playerTurn = true;
 
 	console.log("XPOS: " + oppX);
 	console.log("PLAYER:"+playerNum+" Positions: " + oppX + oppY);
   }
-  
+
   if(message.operation == 'move') {
   	console.log("This should work if YOU move");
   //$('.board button').unbind('click');
   playerTurn = false;
 
   }
-  
-  
+
+
 })
 
 //add join button here
@@ -88,7 +89,7 @@ $('.board button').click(function() {
 	if (playerTurn == false){
 	return;
 	}
-	
+
 	var y_pos=0;
 	var x_pos=0;
 	y_pos = $('.board tr').index($(this).closest('tr'));
@@ -96,7 +97,7 @@ $('.board button').click(function() {
 	console.log("type:"+typeof y_pos);
     //console.log(name + " joins!");
     console.log("Position: " + x_pos + y_pos);
-    
+
            // Ensure the piece falls to the bottom of the column.
       y_pos = dropToBottom(x_pos, y_pos);
 
@@ -104,9 +105,11 @@ $('.board button').click(function() {
             alert(config.takenMsg);
             return;
         }
-        
+
         if(playerTurn= true){
         addDiscToBoard(currentPlayer, x_pos, y_pos);
+        changePlayer();
+        console.log("change player");
         printBoard();}
 
   socket.emit('message', {
