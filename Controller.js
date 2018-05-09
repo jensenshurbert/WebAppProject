@@ -9,8 +9,8 @@ $(document).ready(function() {
 
   $('.prefix').text(config.playerPrefix);
   $('#player').addClass(currentPlayer).text(config[currentPlayer + "PlayerName"]);
-  $('.PlayerNumbernow').text(config.PlayerN);
-  $('#currentP').addClass(playerNum).text(config[playerNum + "PlayerName"])
+  // $('.PlayerNumbernow').text(config.PlayerN);
+  // $('#currentP').addClass(playerNum).text(config[playerNum + "PlayerName"])
 
 
     // Trigger the game sequence by clicking on a position button on the board.
