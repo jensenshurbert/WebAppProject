@@ -32,6 +32,22 @@ socket.on('message', function(message) {
 
     addDiscToBoard(currentPlayer, oppX, oppY2);
     printBoard();
+
+    if (verticalWin() || horizontalWin() || diagonalWin()) {
+        // Destroy our click listener to prevent further play.
+        $('.board button').unbind('click');
+        $('.prefix').text(config.winPrefix);
+        $('.play-again').show("slow");
+        return;
+
+    } else if (gameIsDraw()) {
+        // Destroy our click listener to prevent further play.
+        $('.board button').unbind('click');
+        $('.message').text(config.drawMsg);
+        $('.play-again').show("slow");
+        return;
+    }
+
     changePlayer();
 
 	console.log("XPOS: " + oppX);
