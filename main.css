@@ -79,10 +79,3 @@ button.black {
     height: 30px;
   }
 }
-
-body {background: #333;}
-.log-boolean,
-.log-undefined {color: magenta;}
-.log-object,
-.log-string {color: orange;}
-.log-number {color: cyan;}
