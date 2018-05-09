@@ -144,6 +144,9 @@ $('.board button').click(function() {
 $('.play-again').click(function(e) {
     board = new_board;
     printBoard();
+    if (playerNum==1){
+    playerTurn = true;
+  }
 });
 
 //operations : join, move, end
