@@ -46,7 +46,6 @@ socket.on('message', function(message) {
         playerTurn = false;
         $('.prefix').text(config.winPrefix);
         $('.play-again').show("slow");
-        console.log(Player  " + playerNum" Wins);
         return;
 
     } else if (gameIsDraw()) {
@@ -146,7 +145,7 @@ $('.play-again').click(function(e) {
     board = new_board;
     printBoard();
 });
- 
+
 //operations : join, move, end
 //playerCount for end and move
 //move also needs an x and y
