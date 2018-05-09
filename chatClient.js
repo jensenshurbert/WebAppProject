@@ -148,13 +148,3 @@ $('.play-again').click(function(e) {
     console.log("new game");
     }
 });
-
-//operations : join, move, end
-//playerCount for end and move
-//move also needs an x and y
-
-//in client
-//when this button gets pushed, send a join and look at the message back, "you were accepted"
-
-//both start as not being able to move, if you get a message saying player2 joined, then its player 1's turn so set = true
-//then at that point, any time you do a move, you set it to false, any time the other side moves, set it to true
