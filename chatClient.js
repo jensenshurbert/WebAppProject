@@ -45,6 +45,7 @@ socket.on('message', function(message) {
         playerTurn = false;
         $('.prefix').text(config.winPrefix);
         $('.play-again').show("slow");
+        console.log(Player  " + playerNum" Wins)
         return;
 
     } else if (gameIsDraw()) {
@@ -116,6 +117,7 @@ $('.board button').click(function() {
             playerTurn = false;
             $('.prefix').text(config.winPrefix);
             $('.play-again').show("slow");
+            console.log("")
             return;
 
         } else if (gameIsDraw()) {
