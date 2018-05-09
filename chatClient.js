@@ -29,6 +29,7 @@ socket.on('message', function(message) {
 	}
   }
 
+//when your opponent moved
   if(message.operation == 'moved'){
   	console.log("This should only work if other player moved");
   	oppX = message.xPos;
@@ -84,7 +85,7 @@ $('#name-btn').click(function() {
   });
 })
 
-// Action if they push the set name button
+//when you move
 $('.board button').click(function() {
 	if (playerTurn == false){
 	return;
@@ -95,8 +96,7 @@ $('.board button').click(function() {
 	y_pos = $('.board tr').index($(this).closest('tr'));
   x_pos = $(this).closest('tr').find('td').index($(this).closest('td'));
 	console.log("type:"+typeof y_pos);
-    //console.log(name + " joins!");
-    console.log("Position: " + x_pos + y_pos);
+  console.log("Position: " + x_pos + y_pos);
 
            // Ensure the piece falls to the bottom of the column.
       y_pos = dropToBottom(x_pos, y_pos);
@@ -109,6 +109,13 @@ $('.board button').click(function() {
         if(playerTurn= true){
         addDiscToBoard(currentPlayer, x_pos, y_pos);
         printBoard();
+
+        socket.emit('message', {
+          operation: "move",
+          xPos: x_pos,
+      	  yPos: y_pos,
+      	  num: playerNum
+        });
 
         if (verticalWin() || horizontalWin() || diagonalWin()) {
             // Destroy our click listener to prevent further play.
@@ -131,13 +138,6 @@ $('.board button').click(function() {
         changePlayer();
         console.log("change player");
         printBoard();}
-
-  socket.emit('message', {
-    operation: "move",
-    xPos: x_pos,
-	yPos: y_pos,
-	num: playerNum
-  });
 })
 
 $('.play-again').click(function(e) {
