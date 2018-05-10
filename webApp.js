@@ -5,7 +5,7 @@ var config = {
         redPlayerName: "Player 2",
         startingPlayer: "black", //starting player
         takenMsg: "This position is already taken. Please make another choice.",
-        drawMsg: "This game is a draw.",
+        drawMsg: "Yay Friendship!!! Friendship Points +1.",
         playerPrefix: "Current Player is: ",
         winPrefix: "The winner is: ",
         countToWin: 4,
