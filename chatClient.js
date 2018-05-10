@@ -50,7 +50,6 @@ socket.on('message', function(message) {
 
     } else if (gameIsDraw()) {
         // Destroy our click listener to prevent further play.
-        //$('.board button').unbind('click');
         playerTurn = false;
         $('.message').text(config.drawMsg);
         $('.play-again').show("slow");
@@ -59,7 +58,6 @@ socket.on('message', function(message) {
     printBoard();
     changePlayer();
     console.log("change player");
-    //$('.board button').bind('click');
     playerTurn = true;
 
 	console.log("XPOS: " + oppX);
@@ -119,7 +117,6 @@ $('.board button').click(function() {
 
         if (verticalWin() || horizontalWin() || diagonalWin()) {
             // Destroy our click listener to prevent further play.
-            //$('.board button').unbind('click');
             playerTurn = false;
             $('.prefix').text(config.winPrefix);
             $('.play-again').show("slow");
@@ -127,7 +124,6 @@ $('.board button').click(function() {
 
         } else if (gameIsDraw()) {
             // Destroy our click listener to prevent further play.
-            //$('.board button').unbind('click');
             playerTurn = false;
             $('.message').text(config.drawMsg);
             $('.play-again').show("slow");
