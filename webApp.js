@@ -23,3 +23,6 @@ var new_board = board;
 
 // Set the starting player.
 var currentPlayer = config.startingPlayer;
+
+
+// test change
